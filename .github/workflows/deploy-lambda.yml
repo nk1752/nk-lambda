@@ -11,8 +11,8 @@ env:
     AWS_REGION: 'us-east-1'
 
     S3_BUCKET: 'nk-lambda-code'
-    S3_KEY: 'nkPyLambda.zip'
-    LAMBDA_FUNCTION_NAME: 'nkPyLambda'
+    S3_KEY: 'nkLambdaPy.zip'
+    LAMBDA_FUNCTION_NAME: 'nkLambdaPy'
 
 jobs:
     deploy:
@@ -32,8 +32,9 @@ jobs:
             - name: create .env file
               run: |
                   touch .env
-                  echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
-                  echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> .env
+                  echo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} >> .env
+                  echo AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} >> .env
+                  cat .env
             
             - name: Setup AWS CLI
               uses: aws-actions/configure-aws-credentials@v1
@@ -75,9 +76,13 @@ jobs:
                         cat lambda_env/$file
                     fi
                 done
+                
+                # add .env file to lambda_env
+                cp .env lambda_env/$file
 
+                # Zip the modified files
                 cd lambda_env
-                zip -r ../${{ env.S3_KEY }} .  # zip nkPyLambda.zip
+                zip -r ../${{ env.S3_KEY }} .  # zip nkLambdaPy.zip
                 cd ..
 
                 aws s3 cp ${{ env.S3_KEY }} s3://${{ env.S3_BUCKET }}
