@@ -26,6 +26,12 @@ jobs:
               uses: actions/checkout@v2
               with:
                   fetch-depth: 2  # To fetch the current commit and its parent (so we can compare)
+
+            - name: create .env file
+              run: |
+                  touch .env
+                  echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
+                  echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> .env
             
             - name: Setup AWS CLI
               uses: aws-actions/configure-aws-credentials@v1
