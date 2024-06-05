@@ -16,7 +16,7 @@ def lambda_handler(event, context):
     print("invoked_function_arn: ", context.invoked_function_arn)
     print("memory_limit_in_mb: ", context.memory_limit_in_mb)
     print("log_group_name: ", context.log_group_name)
-    print("** Testing 15 **")
+    print("** Testing 1 **")
     
 
     # Create an S3 client
@@ -24,7 +24,6 @@ def lambda_handler(event, context):
                             aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
                             region_name=os.getenv("AWS_REGION"))
     s3 = session.client('s3')
-    
     
     
     print("Call S3 to list current buckets")
