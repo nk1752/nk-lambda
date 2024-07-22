@@ -3,6 +3,8 @@ import json
 import os
 from dotenv import load_dotenv
 
+from creds import get_access_key_id, get_secret_access_key
+
 load_dotenv()
 
 def lambda_handler(event, context):
@@ -18,11 +20,14 @@ def lambda_handler(event, context):
     print("log_group_name: ", context.log_group_name)
     print("** Testing 1 **")
     
+    aws_access_key_id=get_access_key_id()
+    aws_secret_access_key=get_secret_access_key()
+    region_name='us-east-1'
 
     # Create an S3 client
-    session = boto3.Session(aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
-                            aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
-                            region_name=os.getenv("AWS_REGION"))
+    session = boto3.Session(aws_access_key_id=aws_access_key_id,
+                            aws_secret_access_key=aws_secret_access_key,
+                            region_name=region_name)
     s3 = session.client('s3')
     
     

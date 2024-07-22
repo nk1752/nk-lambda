@@ -34,6 +34,7 @@ jobs:
                   touch .env
                   echo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} >> .env
                   echo AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} >> .env
+                  echo "printing .env file..."
                   cat .env
             
             - name: Setup AWS CLI
@@ -73,12 +74,13 @@ jobs:
                         mkdir -p lambda_env/$(dirname $file)
                         echo "**Copying $file"
                         cp $file lambda_env/$file
+                        # add .env file to lambda_env
+                        cp .env lambda_env/$file
                         cat lambda_env/$file
                     fi
                 done
+
                 
-                # add .env file to lambda_env
-                cp .env lambda_env/$file
 
                 # Zip the modified files
                 cd lambda_env
