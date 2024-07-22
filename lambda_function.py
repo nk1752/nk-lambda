@@ -1,11 +1,11 @@
 import boto3
 import json
 import os
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
 from creds import get_access_key_id, get_secret_access_key
 
-load_dotenv()
+#load_dotenv()
 
 def lambda_handler(event, context):
 
@@ -18,7 +18,7 @@ def lambda_handler(event, context):
     print("invoked_function_arn: ", context.invoked_function_arn)
     print("memory_limit_in_mb: ", context.memory_limit_in_mb)
     print("log_group_name: ", context.log_group_name)
-    print("** Testing 1 **")
+    print("** Testing 2 **")
     
     aws_access_key_id=get_access_key_id()
     aws_secret_access_key=get_secret_access_key()
