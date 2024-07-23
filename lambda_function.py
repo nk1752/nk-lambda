@@ -25,12 +25,14 @@ def lambda_handler(event, context):
     s3_client = boto3.client('s3')
 
     logger.info("get list of buckets")
-    bucket_list = s3_client.list_buckets()
-    logger.info(bucket_list)
+    response = s3_client.list_buckets()
+    logger.info(response)
 
-    # print all buckets
-    for bucket in bucket_list['Buckets']:
-        print(f'- {bucket["Name"]}')
+    # Output the bucket names
+    print('Existing buckets:')
+    for bucket in response['Buckets']:
+        print(f'  {bucket["Name"]}')
+        logger.info(f'  {bucket["Name"]}')
 
     
 
