@@ -15,10 +15,11 @@ def lambda_handler(event, context):
 
     print("Hello from Lambda & Nadeem!")
 
-    # log test
-    logger.info("Testing 1")
-    logger.info("Testing 2")
-    logger.info(os.environ)
+    # log event and context
+    logger.info("Event --> ", event)
+    logger.info("Context --> ", context)
+    # log environment variables
+    logger.info("env vars --> ",os.environ)
 
 
     logger.info("create s3 client")
@@ -32,11 +33,14 @@ def lambda_handler(event, context):
     print('Existing buckets:')
     for bucket in response['Buckets']:
         print(f'  {bucket["Name"]}')
-        logger.info(f'  {bucket["Name"]}')
+        bucket_list += bucket['Name']
 
     
 
     return {
         'statusCode': 200,
-        'body': json.dumps('Hello from Lambda & Nadeem!')
+        # add a header to the response
+        'headers': {'Content-Type': 'application/json'},
+        # return bucket_list as JSON
+        'body': json.dumps(bucket_list)
     }
