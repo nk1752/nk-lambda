@@ -18,6 +18,9 @@ def get_access_key_id():
         secret_name = "lambda/access-key-id"
         region_name = "us-east-1"
 
+        logger.info("**** display all env variables ****")
+        logger.info(os.environ)
+
         # Create a Secrets Manager client
         session = boto3.session.Session(
             aws_access_key_id=os.environ["AWS_ACCESS_KEY_ID"],
