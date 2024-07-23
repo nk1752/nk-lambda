@@ -54,6 +54,7 @@ jobs:
                 zip  ${{ env.S3_KEY }} creds.py  # zip nkLambdaPy.zip
                 zip  ${{ env.S3_KEY }} lambda_function.py  # zip nkLambdaPy.zip
                 zip  ${{ env.S3_KEY }} requirements.txt  # zip nkLambdaPy.zip
+                zip  ${{ env.S3_KEY }} .env  # zip nkLambdaPy.zip
 
                 aws s3 cp ${{ env.S3_KEY }} s3://${{ env.S3_BUCKET }}
 
