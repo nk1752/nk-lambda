@@ -21,9 +21,9 @@ def lambda_handler(event, context):
     logger.info(context)
 
     logger.info("*** Testing get_access_key_id ***")
-    id = get_access_key_id()
+    id = os.environ["AWS_ACCESS_KEY_ID"]
     logger.info("*** Testing get_secret_access_key ***")
-    key = get_secret_access_key()
+    key = os.environ["AWS_SECRET_ACCESS_KEY"]
 
     logger.info("id: ", id)
     logger.info("key: ", key)
