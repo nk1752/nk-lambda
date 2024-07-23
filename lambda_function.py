@@ -16,10 +16,16 @@ def lambda_handler(event, context):
     print("Hello from Lambda & Nadeem!")
 
     # log event and context
-    logger.info("Event --> ", event)
-    logger.info("Context --> ", context)
-    # log environment variables
-    logger.info("env vars --> ",os.environ)
+    print("event keys: ", event.get("key1"))
+    print("context keys: ", context.get("value1"))
+
+    print("invoked_function_arn: ", context.invoked_function_arn)
+    print("memory_limit_in_mb: ", context.memory_limit_in_mb)
+    print("log_group_name: ", context.log_group_name)
+    print("log_stream_name: ", context.log_stream_name)
+    print("function_name: ", context.function_name)
+    print("function_version: ", context.function_version)
+    print("aws_request_id: ", context.aws_request_id)
 
 
     logger.info("create s3 client")
