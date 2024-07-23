@@ -15,21 +15,23 @@ def lambda_handler(event, context):
 
     print("Hello from Lambda & Nadeem!")
 
-    # print context
-    print("aws_request_id: ", context.aws_request_id)
-    print("function_name: ", context.function_name)
-    print("function_version: ", context.function_version)
-    print("invoked_function_arn: ", context.invoked_function_arn)
-    print("memory_limit_in_mb: ", context.memory_limit_in_mb)
-    print("log_group_name: ", context.log_group_name)
-    print("** Testing 2 **")
+    # log test
+    logger.info("Testing 1")
+    logger.info("Testing 2")
+    logger.info(context)
+
+    id = get_access_key_id()
+    key = get_secret_access_key()
+
+    logger.info("id: ", id)
+    logger.info("key: ", key)
     
-    aws_access_key_id=get_access_key_id()
-    aws_secret_access_key=get_secret_access_key()
+    aws_access_key_id=id
+    aws_secret_access_key=key
     region_name='us-east-1'
 
-    logging.info("aws_access_key_id: %s", aws_access_key_id)
-    logging.info("aws_secret_access_key: %s", aws_secret_access_key)
+    logger.info("aws_access_key_id --> ",aws_access_key_id)
+    logger.info("aws_secret_access_key --> ", aws_secret_access_key)
 
     # Create an S3 client
     session = boto3.Session(aws_access_key_id=aws_access_key_id,
