@@ -6,16 +6,24 @@
 import boto3
 from botocore.exceptions import ClientError
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 def get_access_key_id():
         secret_name = "lambda/access-key-id"
         region_name = "us-east-1"
 
         # Create a Secrets Manager client
-        session = boto3.session.Session()
-        client = session.client(
-            service_name='secretsmanager',
+        session = boto3.session.Session(
+            aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+            aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
             region_name=region_name
+        )
+        client = session.client(
+            service_name='secretsmanager'
         )
 
         try:
@@ -35,10 +43,13 @@ def get_secret_access_key():
         region_name = "us-east-1"
 
         # Create a Secrets Manager client
-        session = boto3.session.Session()
-        client = session.client(
-            service_name='secretsmanager',
+        session = boto3.session.Session(
+            aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+            aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
             region_name=region_name
+        )
+        client = session.client(
+            service_name='secretsmanager'
         )
 
         try:

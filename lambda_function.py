@@ -2,6 +2,10 @@ import boto3
 import json
 import os
 #from dotenv import load_dotenv
+import logging
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 from creds import get_access_key_id, get_secret_access_key
 
@@ -23,6 +27,9 @@ def lambda_handler(event, context):
     aws_access_key_id=get_access_key_id()
     aws_secret_access_key=get_secret_access_key()
     region_name='us-east-1'
+
+    logging.info("aws_access_key_id: %s", aws_access_key_id)
+    logging.info("aws_secret_access_key: %s", aws_secret_access_key)
 
     # Create an S3 client
     session = boto3.Session(aws_access_key_id=aws_access_key_id,
