@@ -52,8 +52,6 @@ jobs:
 
                 # Zip the new files
                 zip  ${{ env.S3_KEY }} creds.py  # zip nkLambdaPy.zip
-                zip  ${{ env.S3_KEY }} get-access-key-id.py  # zip nkLambdaPy.zip
-                zip  ${{ env.S3_KEY }} get-secret-access-key.py  # zip nkLambdaPy.zip
                 zip  ${{ env.S3_KEY }} lambda_function.py  # zip nkLambdaPy.zip
                 zip  ${{ env.S3_KEY }} requirements.txt  # zip nkLambdaPy.zip
 
