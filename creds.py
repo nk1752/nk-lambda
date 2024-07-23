@@ -8,6 +8,11 @@ from botocore.exceptions import ClientError
 
 import os
 
+import logging
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
 
 def get_access_key_id():
         secret_name = "lambda/access-key-id"

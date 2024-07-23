@@ -20,7 +20,9 @@ def lambda_handler(event, context):
     logger.info("Testing 2")
     logger.info(context)
 
+    logger.info("*** Testing get_access_key_id ***")
     id = get_access_key_id()
+    logger.info("*** Testing get_secret_access_key ***")
     key = get_secret_access_key()
 
     logger.info("id: ", id)
