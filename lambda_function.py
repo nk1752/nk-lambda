@@ -13,19 +13,19 @@ from creds import get_access_key_id, get_secret_access_key
 
 def lambda_handler(event, context):
 
-    print("Hello from Lambda & Nadeem!")
+    print("************  Hello from Lambda & Nadeem! ************")
 
-    # log event and context
-    print("event keys: ", event.get("key1"))
-    print("context keys: ", context.get("value1"))
+    # parse the event object and get the name of the bucket
+    logger.info(event)
 
-    print("invoked_function_arn: ", context.invoked_function_arn)
-    print("memory_limit_in_mb: ", context.memory_limit_in_mb)
-    print("log_group_name: ", context.log_group_name)
-    print("log_stream_name: ", context.log_stream_name)
-    print("function_name: ", context.function_name)
-    print("function_version: ", context.function_version)
-    print("aws_request_id: ", context.aws_request_id)
+    print("Lambda function ARN:", context.invoked_function_arn)
+    print("CloudWatch log stream name:", context.log_stream_name)
+    print("CloudWatch log group name:",  context.log_group_name)
+    print("Lambda Request ID:", context.aws_request_id)
+    print("Lambda function memory limits in MB:", context.memory_limit_in_mb)
+    # We have added a 1 second delay so you can see the time remaining in get_remaining_time_in_millis.
+    #time.sleep(1) 
+    print("Lambda time remaining in MS:", context.get_remaining_time_in_millis())
 
 
     logger.info("create s3 client")
