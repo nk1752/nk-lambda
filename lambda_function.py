@@ -15,6 +15,7 @@ def lambda_handler(event, context):
 
     print("************  Hello from Lambda & Nadeem! ************")
 
+
     # parse the event object and get the name of the bucket
     logger.info(event)
 
@@ -27,6 +28,7 @@ def lambda_handler(event, context):
     #time.sleep(1) 
     print("Lambda time remaining in MS:", context.get_remaining_time_in_millis())
 
+    buckets = []
 
     logger.info("create s3 client")
     s3_client = boto3.client('s3')
@@ -39,7 +41,7 @@ def lambda_handler(event, context):
     print('Existing buckets:')
     for bucket in response['Buckets']:
         print(f'  {bucket["Name"]}')
-        bucket_list += bucket['Name']
+        buckets += bucket['Name']
 
     
 
@@ -48,5 +50,5 @@ def lambda_handler(event, context):
         # add a header to the response
         'headers': {'Content-Type': 'application/json'},
         # return bucket_list as JSON
-        'body': json.dumps(bucket_list)
+        'body': json.dumps(buckets)
     }
