@@ -18,18 +18,11 @@ def lambda_handler(event, context):
     # log test
     logger.info("Testing 1")
     logger.info("Testing 2")
-    logger.info(context)
+    logger.info(os.environ)
 
-    logger.info("*** Testing get_access_key_id ***")
-    id = os.environ["AWS_ACCESS_KEY_ID"]
-    logger.info("*** Testing get_secret_access_key ***")
-    key = os.environ["AWS_SECRET_ACCESS_KEY"]
-
-    logger.info("id: ", id)
-    logger.info("key: ", key)
     
-    aws_access_key_id=id
-    aws_secret_access_key=key
+    aws_access_key_id=os.environ["AWS_ACCESS_KEY_ID"]
+    aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"]
     region_name='us-east-1'
 
     logger.info("Creating session")
