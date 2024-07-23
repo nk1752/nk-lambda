@@ -28,6 +28,10 @@ def lambda_handler(event, context):
     bucket_list = s3_client.list_buckets()
     logger.info(bucket_list)
 
+    # print all buckets
+    for bucket in bucket_list['Buckets']:
+        print(f'- {bucket["Name"]}')
+
     
 
     return {
