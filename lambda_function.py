@@ -52,6 +52,6 @@ def lambda_handler(event, context):
 
     return {
         # return buckets JSON object
-        buckets: buckets,
-        message: json.dumps(message)
+        message: message,
+        buckets: json.dumps(buckets)
     }
