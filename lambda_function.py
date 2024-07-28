@@ -39,11 +39,11 @@ def lambda_handler(event, context):
     response = s3_client.list_buckets()
     logger.info(response)
 
-    # Output the bucket names
+    # Output the bucket names in list
     print('Existing buckets:')
     for bucket in response['Buckets']:
         #print(f'  {bucket["Name"]}')
-        buckets += bucket['Name']
+        buckets.append(bucket["Name"])
 
     logger.info(buckets)
 
