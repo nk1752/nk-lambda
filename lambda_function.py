@@ -15,6 +15,8 @@ def lambda_handler(event, context):
 
     print("************  Hello from Lambda & Nadeem! ************")
 
+    message = f"Hello {event['first_name']} {event['last_name']}!"
+
 
     # parse the event object and get the name of the bucket
     logger.info(event)
@@ -40,15 +42,17 @@ def lambda_handler(event, context):
     # Output the bucket names
     print('Existing buckets:')
     for bucket in response['Buckets']:
-        print(f'  {bucket["Name"]}')
+        #print(f'  {bucket["Name"]}')
         buckets += bucket['Name']
 
-    
+    logger.info(buckets)
+
 
     return {
         'statusCode': 200,
         # add a header to the response
-        'headers': {'Content-Type': 'application/json'},
+        #'headers': {'Content-Type': 'application/json'},
         # return bucket_list as JSON
-        'body': json.dumps(buckets)
+        #'body': json.dumps(buckets)
+        'message': message
     }

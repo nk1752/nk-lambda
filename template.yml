@@ -1,0 +1,28 @@
+# sam template
+AWSTemplateFormatVersion: '2010-09-09'
+Transform:
+  - AWS::LanguageExtensions
+  - AWS::Serverless-2016-10-31
+
+Description: nkLambdaPy
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 128
+    Architectures:
+      - # Valid values: One of x86_64 or arm64
+    Handler: lambda_function.lambda_handler
+    Runtime: python3.12
+Resources:
+    nkLambdaPyFunction:
+      Type: AWS::Serverless::Function
+      Properties:
+        FunctionName: lambda_function
+        Description: "nkLambdaPy Lambda function"
+        CodeUri: /
+        Handler: lambda_function.lambda_handler
+        Runtime: python3.12
+        MemorySize: 128
+        Timeout: 30
+        Role: "arn:aws:iam::975050076214:role/service-role/nkLambdaPy-role-x7f0p8gg"
