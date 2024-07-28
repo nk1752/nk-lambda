@@ -7,7 +7,7 @@ import logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-from src.creds import get_access_key_id, get_secret_access_key
+from creds import get_access_key_id, get_secret_access_key
 
 
 #load_dotenv()
