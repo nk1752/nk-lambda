@@ -9,6 +9,7 @@ logger.setLevel(logging.INFO)
 
 from src.creds import get_access_key_id, get_secret_access_key
 
+
 #load_dotenv()
 
 def lambda_handler(event, context):
