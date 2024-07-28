@@ -54,6 +54,7 @@ jobs:
 
                 # Zip src folder called 'src' and upload to S3
                 zip -r ${{ env.S3_KEY }} src
+                zip ${{ env.S3_KEY }} lambda_function.py
                 
 
                 aws s3 cp ${{ env.S3_KEY }} s3://${{ env.S3_BUCKET }}
