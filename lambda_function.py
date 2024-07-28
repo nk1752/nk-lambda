@@ -51,10 +51,7 @@ def lambda_handler(event, context):
 
 
     return {
-        'statusCode': 200,
-        # add a header to the response
-        'headers': {'Content-Type': 'application/json'},
-        # return bucket_list as JSON
-        'body': json.dumps(buckets)
-        #'message': message
+        # return buckets JSON object
+        buckets: buckets,
+        message: message
     }
