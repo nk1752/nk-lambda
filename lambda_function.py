@@ -15,8 +15,6 @@ def lambda_handler(event, context):
 
     print("************  Hello from Lambda & Nadeem! ************")
 
-    message = f"Hello {event['first_name']} {event['last_name']}!"
-
 
     # parse the event object and get the name of the bucket
     logger.info(event)
@@ -41,11 +39,15 @@ def lambda_handler(event, context):
 
     # Output the bucket names in list
     print('Existing buckets:')
+    bucket_count = 0
     for bucket in response['Buckets']:
         #print(f'  {bucket["Name"]}')
         buckets.append(bucket["Name"])
+        bucket_count += 1
 
     logger.info(buckets)
+
+    message = f"Hello {event['first_name']} {event['last_name']}! you have {bucket_count} buckets in your account."
 
 
     return {
