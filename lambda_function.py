@@ -46,7 +46,8 @@ def lambda_handler(event, context):
         buckets.append(bucket["Name"])
 
     # print the list of buckets
-    print(buckets)
+    for bucket in buckets:
+        print(bucket)
 
     logger.info(buckets)
 
