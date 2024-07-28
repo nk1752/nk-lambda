@@ -52,11 +52,9 @@ jobs:
             - name: Deploy Lambda functions
               run: |
 
-                # Zip the new files
-                zip  ${{ env.S3_KEY }} creds.py  # zip nkLambdaPy.zip
-                zip  ${{ env.S3_KEY }} lambda_function.py  # zip nkLambdaPy.zip
-                zip  ${{ env.S3_KEY }} requirements.txt  # zip nkLambdaPy.zip
-                zip  ${{ env.S3_KEY }} .env  # zip nkLambdaPy.zip
+                # Zip src folder called 'src' and upload to S3
+                zip -r ${{ env.S3_KEY }} src
+                
 
                 aws s3 cp ${{ env.S3_KEY }} s3://${{ env.S3_BUCKET }}
 
